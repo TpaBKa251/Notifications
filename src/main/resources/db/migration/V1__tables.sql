@@ -5,18 +5,18 @@ create table "notifications"."tokens"
     id    UUID primary key,
     token varchar(255) unique not null,
     constraint fk_tokens_on_user foreign key (id) references "user"."users" (id) on delete cascade
-)
+);
 
 create table "notifications"."images"
 (
     id  UUID primary key,
     uri varchar(1000)
-)
+);
 
 CREATE TABLE "notifications"."notifications"
 (
     id         UUID PRIMARY KEY,
-    user_id    UUID         not null unique,
+    user_id    UUID         not null,
     image      UUID references "notifications"."images" (id),
     type       VARCHAR(255) NOT NULL,
     title      VARCHAR(255) NOT NULL,

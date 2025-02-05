@@ -30,7 +30,7 @@ public class Notification {
     @Column(name = "id", nullable = false, unique = true)
     private UUID id;
 
-    @Column(name = "user_id", nullable = false, unique = true)
+    @Column(name = "user_id", nullable = false)
     private UUID userId;
 
     @ManyToOne

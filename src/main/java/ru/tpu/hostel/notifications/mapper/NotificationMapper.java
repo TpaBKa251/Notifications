@@ -6,7 +6,6 @@ import ru.tpu.hostel.notifications.dto.request.NotificationRequestDto;
 import ru.tpu.hostel.notifications.dto.response.NotificationResponseDto;
 import ru.tpu.hostel.notifications.entity.Notification;
 
-@Component
 @UtilityClass
 public class NotificationMapper {
 

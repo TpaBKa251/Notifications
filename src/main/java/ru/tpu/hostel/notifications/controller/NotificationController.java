@@ -32,6 +32,7 @@ public class NotificationController {
             @RequestParam(name = "type") NotificationType type,
             @RequestParam(name = "date") LocalDate date
             ) {
+        return null;
 
     }
 }

@@ -22,6 +22,7 @@ configurations {
 
 repositories {
     mavenCentral()
+    google()
 }
 
 dependencyManagement {
@@ -48,11 +49,12 @@ dependencies {
     implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
     implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 
-    implementation 'com.google.firebase:firebase-admin:9.1.1'
+    implementation 'com.google.firebase:firebase-admin:9.2.0'
     implementation 'com.google.guava:guava:32.1.2-jre'
-    implementation 'com.google.protobuf:protobuf-java:3.24.3'
+    implementation 'com.google.protobuf:protobuf-java:4.28.2'
     implementation 'io.grpc:grpc-protobuf:1.56.1'
-    implementation 'io.netty:netty-common:4.1.97.Final'
+    implementation 'io.netty:netty-common:4.1.115.Final'
+
 
     compileOnly 'org.projectlombok:lombok'
 

@@ -16,7 +16,7 @@ spring:
       enabled: true
       locations:
         - db.migration
-    schemas: schedules
+    schemas: notifications
 
 springdoc:
   swagger-ui:
