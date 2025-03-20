@@ -131,6 +131,9 @@ jobs:
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
 
+      - name: Decode and save Firebase config
+        run: echo "${{ secrets.FIREBASE_ACCOUNT }}" | base64 --decode > ./service-for-dormitory-firebase-adminsdk-fbsvc-7745a3b8b1.json
+
       - name: Build and Push Docker Image
         run: |
           IMAGE=ghcr.io/tpabka251/notificationsservice
