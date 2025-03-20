@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://82.202.138.26:5430/hostelService
+
+firebase:
+  adminsdk:
+    path: /app/service-for-dormitory-firebase-adminsdk-fbsvc-7745a3b8b1.json

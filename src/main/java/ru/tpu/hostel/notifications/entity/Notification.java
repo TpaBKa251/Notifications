@@ -33,10 +33,6 @@ public class Notification {
     @Column(name = "user_id", nullable = false)
     private UUID userId;
 
-    @ManyToOne
-    @JoinColumn(name = "image", referencedColumnName = "id")
-    private Image image;
-
     @Column(name = "type", nullable = false)
     @Enumerated(EnumType.STRING)
     private NotificationType type;

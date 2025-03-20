@@ -13,16 +13,17 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class TokenServiceImpl implements TokenService {
+    // TODO: При логауте слать сюда сообщение рэббитом об удалении данных о токене юзера
 
     private final TokenRepository tokenRepository;
 
     @Override
     public ResponseEntity<?> createToken(TokenRequestDto tokenRequestDto, UUID userId) {
         Token token = new Token();
-        token.setId(userId);
+        token.setUserId(userId);
         token.setToken(tokenRequestDto.token());
 
-        tokenRepository.save(token);
+        tokenRepository.upsertToken(token);
 
         return ResponseEntity.ok(token);
     }

@@ -4,6 +4,7 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
@@ -14,12 +15,13 @@ import java.io.IOException;
 @Configuration
 public class FireBaseConfig {
 
-    private static final String FILE_PATH = System.getenv("SERVICE_ACCOUNT_FILE_PATH");
+    @Value("${firebase.adminsdk.path}")
+    private String serviceAccountFilePath;
 
     @PostConstruct
-    public static void initializeFirebase() {
+    public void initializeFirebase() {
         try {
-            FileInputStream serviceAccount = new FileInputStream(FILE_PATH);
+            FileInputStream serviceAccount = new FileInputStream(serviceAccountFilePath);
 
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))

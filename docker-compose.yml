@@ -3,7 +3,7 @@ services:
   notificationservice:
     container_name: notificationservice
     build:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-local
       context: .
     hostname: notificationservice
     ports:
@@ -12,9 +12,6 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://hostelDB:5432/hostelService
       - SPRING_DATASOURCE_USERNAME=hostel
       - SPRING_DATASOURCE_PASSWORD=ilia
-      - SERVICE_ACCOUNT_FILE_PATH=/app/config/service-account.json
-    volumes:
-      - ./service-for-dormitory-firebase-adminsdk-fbsvc-7745a3b8b1.json:/app/config/service-account.json
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 10s

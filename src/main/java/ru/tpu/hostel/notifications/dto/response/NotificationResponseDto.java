@@ -10,6 +10,12 @@ import java.util.UUID;
 /**
  * DTO for {@link Notification}
  */
-public record NotificationResponseDto(UUID id, UUID userId, NotificationType type, String title,
-                                      String message, LocalDateTime createdAt) implements Serializable {
+public record NotificationResponseDto(
+        UUID id,
+        UUID userId,
+        NotificationType type,
+        String title,
+        String message,
+        LocalDateTime createdAt
+) implements Serializable {
 }

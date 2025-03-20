@@ -1,22 +1,40 @@
 server:
   port: 8080
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
 spring:
+  profiles:
+    active: "@activatedProperties@"
+
   jpa:
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+
   datasource:
     url: jdbc:postgresql://hostelDB:5432/hostelService
     username: hostel
     password: ilia
+
   flyway:
     jdbc-properties:
       enabled: true
       locations:
         - db.migration
     schemas: notifications
+
+firebase:
+  adminsdk:
+    path: service-for-dormitory-firebase-adminsdk-fbsvc-7745a3b8b1.json
 
 springdoc:
   swagger-ui:
