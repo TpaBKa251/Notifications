@@ -136,7 +136,7 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          IMAGE=ghcr.io/tpabka251/notificationsservice
+          IMAGE=ghcr.io/tpabka251/notificationservice
           docker build -t $IMAGE:latest -t $IMAGE:${{ github.sha }} .
           docker push $IMAGE:latest
           docker push $IMAGE:${{ github.sha }}
@@ -153,5 +153,5 @@ jobs:
             git pull origin master
             sudo kubectl apply -f k8s/deployment.yaml
             sudo kubectl apply -f k8s/service.yaml
-            sudo kubectl rollout restart deployment/notificationsservice
-            sudo kubectl rollout status deployment/notificationsservice
+            sudo kubectl rollout restart deployment/notificationservice
+            sudo kubectl rollout status deployment/notificationservice

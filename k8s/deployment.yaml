@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: notificationsservice
+  name: notificationservice
   labels:
-    app: notificationsservice
+    app: notificationservice
 spec:
   strategy:
     type: RollingUpdate
@@ -12,16 +12,16 @@ spec:
       maxUnavailable: 0
   selector:
     matchLabels:
-      app: notificationsservice
+      app: notificationservice
   template:
     metadata:
       labels:
-        app: notificationsservice
+        app: notificationservice
     spec:
       automountServiceAccountToken: false
       containers:
-        - name: notificationsservice
-          image: ghcr.io/tpabka251/notificationsservice:latest
+        - name: notificationservice
+          image: ghcr.io/tpabka251/notificationservice:latest
           ports:
             - containerPort: 8080
           resources:
