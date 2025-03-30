@@ -21,6 +21,38 @@ services:
     networks:
       - shared-network
 
+  grafana:
+    image: grafana/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=user
+      - GF_SECURITY_ADMIN_PASSWORD=user
+    ports:
+      - "3000:3000"
+    networks:
+      - shared-network
+
+  tempo:
+    image: grafana/tempo:2.3.0
+    container_name: tempo
+    ports:
+      - "4317:4317"   # OTLP gRPC
+      - "4318:4318"   # OTLP HTTP (если вдруг понадобится)
+      - "3200:3200"   # Tempo UI (если хочешь глянуть API)
+    command:
+       - "-config.file=/etc/tempo.yaml"
+    volumes:
+       - ./tempo-config.yaml:/etc/tempo.yaml
+       - ./tempo-data:/var/tempo
+     #      - ./tempo-metrics:/var/tempo/metrics
+    networks:
+       shared-network:
+       tempo-net:
+         aliases:
+          - tempo-query-frontend
+
+
 networks:
+  tempo-net:
+    driver: bridge
   shared-network:
     external: true

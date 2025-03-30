@@ -1,6 +1,12 @@
 server:
   port: 8085
 
+
+otlp:
+  tracing:
+    export-enabled: true
+    endpoint: http://localhost:4317
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5430/hostelService
