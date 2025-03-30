@@ -70,6 +70,9 @@ dependencies {
     implementation 'io.grpc:grpc-protobuf:1.56.1'
     implementation 'io.netty:netty-common:4.1.115.Final'
 
+    implementation 'io.micrometer:micrometer-tracing-bridge-otel:1.4.4'
+    implementation 'io.opentelemetry:opentelemetry-exporter-otlp:1.37.0' // можешь попробовать 1.47.0 заставить работать, у меня не получается
+
 
     compileOnly 'org.projectlombok:lombok'
 

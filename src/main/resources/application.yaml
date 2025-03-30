@@ -5,10 +5,20 @@ management:
   endpoints:
     web:
       exposure:
-        include: health
+        include: health, prometheus, info, beans, trace
   endpoint:
     health:
       show-details: always
+  tracing:
+    enabled: true
+
+otlp:
+  tracing:
+    export-enabled: true
+    endpoint: http://tempo:4317
+    timeout: 5000 # это в секундах
+    service-name: booking-service
+
 
 spring:
   profiles:
