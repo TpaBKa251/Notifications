@@ -5,3 +5,7 @@ spring:
 firebase:
   adminsdk:
     path: /app/service-for-dormitory-firebase-adminsdk-fbsvc-7745a3b8b1.json
+
+otlp:
+  tracing:
+    endpoint: http://tempo.monitoring.svc.cluster.local:4317    

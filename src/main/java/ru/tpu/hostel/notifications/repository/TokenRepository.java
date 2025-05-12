@@ -30,6 +30,7 @@ public interface TokenRepository extends JpaRepository<Token, UUID> {
     )
     void upsertTokenNative(@Param("userId") UUID userId, @Param("token") String token);
 
+    @Transactional
     default void upsertToken(Token token) {
         upsertTokenNative(token.getUserId(), token.getToken());
     }

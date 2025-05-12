@@ -14,6 +14,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
+import ru.tpu.hostel.internal.utils.TimeUtil;
 import ru.tpu.hostel.notifications.enums.NotificationType;
 
 import java.time.LocalDateTime;
@@ -45,7 +46,7 @@ public class Notification {
 
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt = TimeUtil.now();
 
     @Column(name = "sent_at")
     @Temporal(TemporalType.TIMESTAMP)

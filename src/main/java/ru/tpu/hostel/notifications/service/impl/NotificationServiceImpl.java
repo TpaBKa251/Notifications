@@ -6,22 +6,19 @@ import com.google.firebase.messaging.Message;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import ru.tpu.hostel.internal.utils.TimeUtil;
 import ru.tpu.hostel.notifications.dto.request.NotificationRequestDto;
 import ru.tpu.hostel.notifications.dto.response.NotificationResponseDto;
 import ru.tpu.hostel.notifications.entity.Notification;
 import ru.tpu.hostel.notifications.entity.Token;
-import ru.tpu.hostel.notifications.enums.NotificationType;
 import ru.tpu.hostel.notifications.mapper.NotificationMapper;
 import ru.tpu.hostel.notifications.repository.NotificationRepository;
 import ru.tpu.hostel.notifications.repository.TokenRepository;
 import ru.tpu.hostel.notifications.service.NotificationService;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -65,7 +62,7 @@ public class NotificationServiceImpl implements NotificationService {
 
             try {
                 FirebaseMessaging.getInstance().send(message);
-                notification.setSentAt(LocalDateTime.now(ZoneId.of("UTC")));
+                notification.setSentAt(TimeUtil.now());
                 notificationRepository.save(notification);
                 log.info(
                         "Уведомление отправлено для {}: {}. {}",

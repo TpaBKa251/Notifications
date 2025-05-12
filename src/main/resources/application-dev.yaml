@@ -1,10 +1,9 @@
 server:
   port: 8085
 
-
 otlp:
   tracing:
-    export-enabled: true
+    export-enabled: false
     endpoint: http://localhost:4317
 
 spring:
