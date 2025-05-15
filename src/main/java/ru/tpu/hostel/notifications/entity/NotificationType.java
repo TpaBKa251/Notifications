@@ -1,4 +1,4 @@
-package ru.tpu.hostel.notifications.enums;
+package ru.tpu.hostel.notifications.entity;
 
 public enum NotificationType {
     BALANCE(),

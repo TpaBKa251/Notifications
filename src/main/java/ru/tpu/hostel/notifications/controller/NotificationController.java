@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.tpu.hostel.notifications.dto.request.NotificationRequestDto;
 import ru.tpu.hostel.notifications.dto.response.NotificationResponseDto;
-import ru.tpu.hostel.notifications.enums.NotificationType;
+import ru.tpu.hostel.notifications.entity.NotificationType;
 import ru.tpu.hostel.notifications.service.NotificationService;
 
 import java.time.LocalDate;

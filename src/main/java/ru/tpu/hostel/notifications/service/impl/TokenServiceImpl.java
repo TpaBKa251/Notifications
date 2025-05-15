@@ -3,6 +3,7 @@ package ru.tpu.hostel.notifications.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.tpu.hostel.internal.common.logging.LogFilter;
 import ru.tpu.hostel.internal.common.logging.SecretArgument;
@@ -19,7 +20,7 @@ public class TokenServiceImpl implements TokenService {
 
     private final TokenRepository tokenRepository;
 
-    @Transactional
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     @LogFilter(enableParamsLogging = false)
     @Override
     public ResponseEntity<?> createToken(@SecretArgument TokenRequestDto tokenRequestDto) {
@@ -27,7 +28,7 @@ public class TokenServiceImpl implements TokenService {
         token.setId(ExecutionContext.get().getUserID());
         token.setToken(tokenRequestDto.token());
 
-        tokenRepository.upsertToken(token);
+        tokenRepository.upsertTokenNative(token.getUserId(), token.getToken());
 
         return ResponseEntity.ok(token);
     }

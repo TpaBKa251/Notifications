@@ -7,15 +7,12 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 import ru.tpu.hostel.internal.utils.TimeUtil;
-import ru.tpu.hostel.notifications.enums.NotificationType;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

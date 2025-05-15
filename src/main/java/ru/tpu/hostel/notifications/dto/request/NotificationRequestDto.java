@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import ru.tpu.hostel.notifications.entity.Notification;
-import ru.tpu.hostel.notifications.enums.NotificationType;
+import ru.tpu.hostel.notifications.entity.NotificationType;
 
 import java.io.Serializable;
 import java.util.UUID;

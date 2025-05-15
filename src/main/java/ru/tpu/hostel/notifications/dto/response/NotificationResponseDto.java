@@ -1,7 +1,7 @@
 package ru.tpu.hostel.notifications.dto.response;
 
 import ru.tpu.hostel.notifications.entity.Notification;
-import ru.tpu.hostel.notifications.enums.NotificationType;
+import ru.tpu.hostel.notifications.entity.NotificationType;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
