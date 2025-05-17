@@ -59,7 +59,7 @@ dependencyManagement {
 }
 
 dependencies {
-    implementation 'ru.tpu.hostel:hostel-core:1.0.10'
+    implementation 'ru.tpu.hostel:hostel-core:1.1.1'
 
     implementation platform("org.springframework.cloud:spring-cloud-dependencies:2023.0.2")
     //implementation 'ch.qos.logback:logback-core:1.5.13'

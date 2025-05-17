@@ -1,0 +1,125 @@
+openapi: "3.1.0"
+info:
+  title: "Notifications API"
+  description: "Notifications API"
+  version: "1.0.0"
+servers:
+  - url: "https://Notifications"
+paths:
+  /notifications/tokens:
+    post:
+      summary: "POST notifications/tokens"
+      operationId: "createToken"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TokenRequestDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "object"
+  /notifications:
+    post:
+      summary: "POST notifications"
+      operationId: "createNotification"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NotificationRequestDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/NotificationResponseDto"
+  /notifications/get:
+    get:
+      summary: "GET notifications/get"
+      operationId: "getNotification"
+      parameters:
+        - name: "type"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+            enum:
+              - "BALANCE"
+              - "DOCUMENT"
+              - "KITCHEN_SCHEDULE"
+        - name: "date"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+            format: "date"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/NotificationResponseDto"
+components:
+  schemas:
+    TokenRequestDto:
+      type: "object"
+      properties:
+        token:
+          type: "string"
+          nullable: true
+    NotificationRequestDto:
+      type: "object"
+      properties:
+        userId:
+          type: "string"
+          format: "uuid"
+          nullable: true
+        type:
+          type: "string"
+          nullable: true
+          enum:
+            - "BALANCE"
+            - "DOCUMENT"
+            - "KITCHEN_SCHEDULE"
+        title:
+          type: "string"
+          nullable: true
+        message:
+          type: "string"
+          nullable: true
+    NotificationResponseDto:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          format: "uuid"
+          nullable: true
+        userId:
+          type: "string"
+          format: "uuid"
+          nullable: true
+        type:
+          type: "string"
+          nullable: true
+          enum:
+            - "BALANCE"
+            - "DOCUMENT"
+            - "KITCHEN_SCHEDULE"
+        title:
+          type: "string"
+          nullable: true
+        message:
+          type: "string"
+          nullable: true
+        createdAt:
+          type: "string"
+          format: "date-time"
+          nullable: true
