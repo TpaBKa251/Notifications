@@ -58,8 +58,12 @@ dependencyManagement {
     }
 }
 
+ext {
+    set('internalLibraryVersion', "1.2.1")
+}
+
 dependencies {
-    implementation 'ru.tpu.hostel:hostel-core:1.1.1'
+    implementation "ru.tpu.hostel:hostel-core:${internalLibraryVersion}"
 
     implementation platform("org.springframework.cloud:spring-cloud-dependencies:2023.0.2")
     //implementation 'ch.qos.logback:logback-core:1.5.13'
