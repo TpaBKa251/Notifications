@@ -59,7 +59,7 @@ dependencyManagement {
 }
 
 ext {
-    set('internalLibraryVersion', "1.2.1")
+    set('internalLibraryVersion', "1.2.2")
 }
 
 dependencies {
