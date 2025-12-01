@@ -16,8 +16,6 @@ import ru.tpu.hostel.notifications.repository.NotificationRepository;
 import ru.tpu.hostel.notifications.repository.TokenRepository;
 import ru.tpu.hostel.notifications.service.NotificationService;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
 
 @Slf4j

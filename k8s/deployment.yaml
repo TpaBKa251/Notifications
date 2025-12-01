@@ -6,10 +6,7 @@ metadata:
     app: notificationservice
 spec:
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1         # Максимально количество новых контейнеров, которые могут быть созданы во время обновления
-      maxUnavailable: 0
+    type: Recreate
   selector:
     matchLabels:
       app: notificationservice
@@ -19,11 +16,14 @@ spec:
         app: notificationservice
     spec:
       automountServiceAccountToken: false
+      nodeSelector:
+        kubernetes.io/hostname: "monitoring"
       containers:
         - name: notificationservice
           image: ghcr.io/tpabka251/notificationservice:latest
           ports:
-            - containerPort: 8080
+            - name: http
+              containerPort: 8080
           resources:
             requests:
               cpu: "100m"

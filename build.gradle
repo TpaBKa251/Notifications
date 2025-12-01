@@ -1,9 +1,9 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.3.5'
+    id 'org.springframework.boot' version '3.5.8'
     id 'io.spring.dependency-management' version '1.1.7'
-    id 'org.owasp.dependencycheck' version '8.3.1'
-    id "org.sonarqube" version "5.1.0.4882"
+    id 'org.owasp.dependencycheck' version '12.1.1'
+    id "org.sonarqube" version "7.0.1.6134"
     id 'jacoco'
 }
 
@@ -12,7 +12,7 @@ version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 
@@ -45,7 +45,7 @@ sonarqube {
         property "sonar.projectKey", "TpaBKa251_Notifications"
         property "sonar.organization", "hostel-service" // Замените на имя вашей организации
         property "sonar.host.url", "https://sonarcloud.io"
-        property "sonar.login", System.getenv("SONAR_TOKEN") // Используется токен из секретов GitHub
+        property "sonar.token", System.getenv("SONAR_TOKEN") // Используется токен из секретов GitHub
         property "sonar.coverage.jacoco.xmlReportPaths", layout.buildDirectory.file("reports/jacoco/test/jacocoTestReport.xml")
         property "sonar.coverage.exclusions", "**/*Generated*.java,**/model/*.java" // Исключения из анализа
         property "sonar.java.binaries", "build/classes/java/main" // Путь к скомпилированным классам
@@ -59,7 +59,7 @@ dependencyManagement {
 }
 
 ext {
-    set('internalLibraryVersion', "1.2.2")
+    set('internalLibraryVersion', "1.5.5")
 }
 
 dependencies {
@@ -70,27 +70,33 @@ dependencies {
     implementation 'commons-io:commons-io:2.14.0'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
-    runtimeOnly 'org.postgresql:postgresql'
-    implementation "org.flywaydb:flyway-database-postgresql"
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.14'
+    runtimeOnly 'org.postgresql:postgresql:42.7.8'
+    implementation 'org.flywaydb:flyway-core:11.17.2'
+    implementation 'org.flywaydb:flyway-database-postgresql:11.17.2'
+    implementation 'org.ehcache:ehcache:3.10.8:jakarta'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator' // Для актюаторов
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
-    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+    implementation 'jakarta.validation:jakarta.validation-api:3.1.1'
 
     implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
     implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
     implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 
-    implementation 'com.google.firebase:firebase-admin:9.2.0'
-    implementation 'com.google.guava:guava:32.1.2-jre'
-    implementation 'com.google.protobuf:protobuf-java:4.28.2'
+    implementation 'com.google.firebase:firebase-admin:9.7.0'
+    implementation 'com.google.guava:guava:33.5.0-jre'
+    implementation 'com.google.protobuf:protobuf-java:4.33.1'
     implementation 'io.grpc:grpc-protobuf:1.56.1'
     implementation 'io.netty:netty-common:4.1.118.Final'
 
-    implementation 'io.micrometer:micrometer-tracing-bridge-otel:1.4.4'
-    implementation 'io.opentelemetry:opentelemetry-exporter-otlp:1.37.0' // можешь попробовать 1.47.0 заставить работать, у меня не получается
+    implementation 'io.opentelemetry:opentelemetry-exporter-otlp:1.49.0'
+    implementation 'io.micrometer:micrometer-registry-prometheus:1.16.0'
+    implementation 'com.github.loki4j:loki-logback-appender:1.5.2'
+    implementation 'net.logstash.logback:logstash-logback-encoder:8.1'
+    implementation 'io.opentelemetry.contrib:opentelemetry-samplers:1.49.0-alpha'
+    implementation 'io.opentelemetry:opentelemetry-sdk-extension-autoconfigure-spi:1.49.0'
+    implementation 'io.opentelemetry.instrumentation:opentelemetry-jdbc:2.22.0-alpha'
 
 
     compileOnly 'org.projectlombok:lombok'
@@ -115,7 +121,7 @@ tasks.named('test') {
 }
 
 jacoco {
-    toolVersion = "0.8.11" // Версия JaCoCo
+    toolVersion = "0.8.14" // Версия JaCoCo
 }
 
 jacocoTestReport {
