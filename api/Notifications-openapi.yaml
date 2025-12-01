@@ -1,32 +1,16 @@
-openapi: "3.1.0"
+openapi: 3.1.0
 info:
-  title: "Notifications API"
-  description: "Notifications API"
-  version: "1.0.0"
+  title: OpenAPI definition
+  version: v0
 servers:
-  - url: "https://Notifications"
+- url: http://localhost:8085
+  description: Generated server url
 paths:
-  /notifications/tokens:
-    post:
-      summary: "POST notifications/tokens"
-      operationId: "createToken"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/TokenRequestDto"
-        required: true
-      responses:
-        "200":
-          description: "OK"
-          content:
-            '*/*':
-              schema:
-                type: "object"
   /notifications:
     post:
-      summary: "POST notifications"
-      operationId: "createNotification"
+      tags:
+      - notification-controller
+      operationId: createNotification
       requestBody:
         content:
           application/json:
@@ -35,91 +19,108 @@ paths:
         required: true
       responses:
         "200":
-          description: "OK"
+          description: OK
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: "#/components/schemas/NotificationResponseDto"
-  /notifications/get:
-    get:
-      summary: "GET notifications/get"
-      operationId: "getNotification"
-      parameters:
-        - name: "type"
-          in: "query"
-          required: true
-          schema:
-            type: "string"
-            enum:
-              - "BALANCE"
-              - "DOCUMENT"
-              - "KITCHEN_SCHEDULE"
-        - name: "date"
-          in: "query"
-          required: true
-          schema:
-            type: "string"
-            format: "date"
+  /notifications/tokens:
+    post:
+      tags:
+      - token-controller
+      operationId: createToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TokenRequestDto"
+        required: true
       responses:
         "200":
-          description: "OK"
+          description: OK
           content:
-            '*/*':
+            application/json:
+              schema:
+                type: object
+  /notifications/get:
+    get:
+      tags:
+      - notification-controller
+      operationId: getNotification
+      parameters:
+      - name: type
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - BALANCE
+          - DOCUMENT
+          - KITCHEN_SCHEDULE
+      - name: date
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
               schema:
                 $ref: "#/components/schemas/NotificationResponseDto"
 components:
   schemas:
-    TokenRequestDto:
-      type: "object"
-      properties:
-        token:
-          type: "string"
-          nullable: true
     NotificationRequestDto:
-      type: "object"
+      type: object
       properties:
         userId:
-          type: "string"
-          format: "uuid"
-          nullable: true
+          type: string
+          format: uuid
         type:
-          type: "string"
-          nullable: true
+          type: string
           enum:
-            - "BALANCE"
-            - "DOCUMENT"
-            - "KITCHEN_SCHEDULE"
+          - BALANCE
+          - DOCUMENT
+          - KITCHEN_SCHEDULE
         title:
-          type: "string"
-          nullable: true
+          type: string
+          minLength: 1
         message:
-          type: "string"
-          nullable: true
+          type: string
+          minLength: 1
+      required:
+      - message
+      - title
+      - type
+      - userId
     NotificationResponseDto:
-      type: "object"
+      type: object
       properties:
         id:
-          type: "string"
-          format: "uuid"
-          nullable: true
+          type: string
+          format: uuid
         userId:
-          type: "string"
-          format: "uuid"
-          nullable: true
+          type: string
+          format: uuid
         type:
-          type: "string"
-          nullable: true
+          type: string
           enum:
-            - "BALANCE"
-            - "DOCUMENT"
-            - "KITCHEN_SCHEDULE"
+          - BALANCE
+          - DOCUMENT
+          - KITCHEN_SCHEDULE
         title:
-          type: "string"
-          nullable: true
+          type: string
         message:
-          type: "string"
-          nullable: true
+          type: string
         createdAt:
-          type: "string"
-          format: "date-time"
-          nullable: true
+          type: string
+          format: date-time
+    TokenRequestDto:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+      - token
